@@ -1,238 +1,426 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warsi Traders - Quality Furniture & Essentials</title>
+    <title>Warsi Traders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- For WhatsApp icon and logo -->
     <style>
-        /* Global Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f5f0; /* Warm beige background */
-            color: #333;
-            line-height: 1.6;
-        }
-        a { text-decoration: none; color: inherit; }
-        button {
-            background-color: #8b4513; /* Saddle brown for furniture theme */
+            background-color: #3e2723; /* Dark brown */
             color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.5s ease; /* Smooth transition */
         }
-        button:hover { background-color: #a0522d; }
 
-        /* Header */
         header {
-            background: linear-gradient(to right, #8b4513, #d2b48c); /* Gradient for warmth */
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
         }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { font-size: 1.2em; margin: 10px 0; }
 
-        /* Navigation */
-        nav {
-            background-color: #d2b48c;
-            padding: 15px;
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            flex-grow: 1;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav a {
-            margin: 0 20px;
-            font-weight: bold;
-            color: #8b4513;
-            transition: color 0.3s;
-        }
-        nav a:hover { color: #fff; }
-
-        /* Hero Section */
-        .hero {
-            background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); /* Cozy living room image */
-            background-size: cover;
-            background-position: center;
-            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
+            gap: 10px; /* Space between icon and text */
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Logo-like shadow */
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.4); /* Dark overlay for text readability */
-        }
-        .hero h2, .hero p { position: relative; z-index: 1; }
-        .hero h2 { font-size: 2.5em; margin: 0; }
-        .hero p { font-size: 1.2em; }
 
-        /* Products Section */
+        .logo-icon {
+            font-size: 1.2em; /* Icon size relative to text */
+            color: #f5f5dc; /* Creamy color for contrast */
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            padding: 5px; /* Smaller padding */
+            font-size: 0.9em; /* Smaller font */
+            border: none;
+            border-radius: 5px 0 0 5px;
+            width: 150px; /* Fixed smaller width */
+        }
+
+        .search-container button {
+            padding: 5px 8px; /* Smaller padding */
+            background-color: #f5f5dc; /* Creamy */
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: #3e2723;
+            font-size: 0.9em; /* Smaller font */
+        }
+
+        .search-container button:hover {
+            background-color: #e0e0c0;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh; /* Ensure content takes full height for scrolling */
+        }
+
+        .whatsapp-before-products {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25d366; /* WhatsApp green */
+            color: white;
+            border: none;
+            padding: 10px 20px; /* Adjusted for text */
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px; /* Rectangle shape */
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-before-products:hover {
+            background-color: #128c7e;
+        }
+
         .products {
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
-        .product {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        .product:hover { transform: translateY(-5px); }
-        .product img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .product h3 { margin: 15px; font-size: 1.5em; }
-        .product p { margin: 0 15px; color: #666; }
-        .product .price { font-weight: bold; color: #8b4513; }
-        .product button { margin: 15px; width: calc(100% - 30px); }
 
-        /* Reviews Section */
-        .reviews {
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
+        .product-pair {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Frame around the pair */
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .reviews h2 { text-align: center; color: #8b4513; }
-        .review {
-            margin: 20px 0;
             padding: 20px;
-            border-bottom: 1px solid #eee;
+            background-color: rgba(255, 255, 255, 0.05);
         }
-        .review:last-child { border-bottom: none; }
-        .review .stars { color: #ffd700; font-size: 1.2em; }
-        .review p { margin: 10px 0; }
 
-        /* Footer */
-        footer {
-            background-color: #8b4513;
+        .product {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 300px;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product.hidden {
+            display: none; /* Hide on search */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #3e2723;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
             color: white;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        .modal-images {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-images img {
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        .modal h2 {
+            margin-top: 10px;
+        }
+
+        .modal p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .modal .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #f5f5dc;
+        }
+
+        .modal .weight {
+            font-size: 1.2em;
+        }
+
+        .modal .reviews {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .modal .review {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .modal .review h4 {
+            margin: 0;
+            color: #f5f5dc;
+        }
+
+        .modal .whatsapp-btn {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .modal .whatsapp-btn:hover {
+            background-color: #128c7e;
+        }
+
+        footer {
             text-align: center;
             padding: 20px;
-            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Footer appears at the end after scrolling */
         }
-        footer p { margin: 0; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-pair {
+                flex-direction: column;
+                align-items: center;
+            }
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+            }
+            .modal-images {
+                flex-direction: column;
+                align-items: center;
+            }
+            .modal-images img {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Warsi Traders</h1>
-        <p>Quality furniture, office chairs, counters, and mosque essentials – Comfort meets tradition</p>
+        <h1>
+            <i class="fas fa-store logo-icon"></i> Warsi Traders
+        </h1>
+        <div class="search-container">
+            <input type="text" id="search-input" list="product-suggestions" placeholder="Search products...">
+            <datalist id="product-suggestions">
+                <option value="office chair">
+                <option value="counter">
+                <option value="desk">
+                <option value="sofa">
+                <option value="table">
+                <option value="cabinet">
+                <option value="bookshelf">
+                <option value="mattress for masjid">
+                <option value="revolving chair">
+                <option value="fibre chair">
+                <option value="bed">
+                <option value="wardrobe">
+                <option value="dining set">
+                <option value="stool">
+                <option value="armchair">
+                <option value="coffee table">
+            </datalist>
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
     </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#products">Products</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <section class="hero" id="home">
-        <div>
-            <h2>Welcome to Warsi Traders</h2>
-            <p>Explore our collection of office chairs, counters, mattresses for mosques, and more. Shop now and enhance your space!</p>
+
+    <main>
+        <button id="whatsapp-before-products" class="whatsapp-before-products" title="Order with WhatsApp">
+            <i class="fab fa-whatsapp"></i> Talk to the Owner
+        </button>
+        <section class="products">
+            <h2>Our Products</h2>
+            <div class="product-pair">
+                <div class="product" data-name="office chair" data-images="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80,https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-description="Comfortable and stylish office chair for your workspace. Ergonomic design with adjustable height and lumbar support. Made from high-quality materials for durability. Perfect for long hours of work." data-price="₹5,000" data-weight="15 kg" data-reviews='[{"name":"John Doe","review":"Great chair! Very comfortable and adjustable. Highly recommend.","rating":"★★★★☆"},{"name":"Jane Smith","review":"Good quality for the price. Easy to assemble.","rating":"★★★★☆"},{"name":"Mike Johnson","review":"Excellent support for back. Worth every penny.","rating":"★★★★★"}]'>
+                    <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Office Chair" width="300">
+                    <h3>Office Chair</h3>
+                    <p>Comfortable and stylish office chair for your workspace.</p>
+                </div>
+                <div class="product" data-name="counter" data-images="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80,https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-description="Durable counter for retail or home use. Made from high-quality wood with a sleek finish." data-price="₹8,000" data-weight="20 kg" data-reviews='[{"name":"Alice Brown","review":"Sturdy and looks great in my shop.","rating":"★★★★☆"},{"name":"Bob Wilson","review":"Easy to clean and durable.","rating":"★★★★★"}]'>
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Counter" width="300">
+                    <h3>Counter</h3>
+                    <p>Durable counter for retail or home use.</p>
+                </div>
+            </div>
+            <div class="product-pair">
+                <div class="product" data-name="desk" data-images="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-description="Modern desk perfect for home or office work. Spacious surface with storage drawers." data-price="₹12,000" data-weight="25 kg" data-reviews='[{"name":"Charlie Davis","review":"Perfect for my home office.","rating":"★★★★★"}]'>
+                    <img src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Desk" width="300">
+                    <h3>Desk</h3>
+                    <p>Modern desk perfect for home or office work.</p>
+                </div>
+                <div class="product" data-name="sofa" data-images="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-description="Cozy sofa for your living room comfort. Soft cushions and durable fabric." data-price="₹25,000" data-weight="40 kg" data-reviews='[{"name":"Diana Evans","review":"Very comfortable and stylish.","rating":"★★★★☆"}]'>
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sofa" width="300">
+                    <h3>Sofa</h3>
+                    <p>Cozy sofa for your living room comfort.</p>
+                </div>
+            </div>
+            <!-- Add more product-pairs here with similar data attributes for other products -->
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-images" id="modal-images"></div>
+            <h2 id="modal-title"></h2>
+            <p class="price" id="modal-price"></p>
+            <p class="weight" id="modal-weight"></p>
+            <p id="modal-description"></p>
+            <button class="whatsapp-btn" id="modal-whatsapp">Order via WhatsApp</button>
+            <div class="reviews" id="modal-reviews"></div>
         </div>
-    </section>
-    <section id="products" class="products">
-        <!-- Product 1: Office Chair -->
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ergonomic Office Chair">
-            <h3>Ergonomic Office Chair</h3>
-            <p>Designed for comfort during long work sessions. Adjustable height and lumbar support.</p>
-            <p class="price">$199.99</p>
-            <button onclick="addToCart('Ergonomic Office Chair')">Add to Cart</button>
-        </div>
-        <!-- Product 2: Counter (Reception Desk) -->
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Office Counter">
-            <h3>Modern Office Counter</h3>
-            <p>Stylish reception desk with storage. Perfect for offices and waiting areas.</p>
-            <p class="price">$399.99</p>
-            <button onclick="addToCart('Modern Office Counter')">Add to Cart</button>
-        </div>
-        <!-- Product 3: Mosque Mattress -->
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mosque Mattress">
-            <h3>Mosque Prayer Mattress</h3>
-            <p>Comfortable foam mattress for mosque floors. Easy to clean and durable.</p>
-            <p class="price">$49.99</p>
-            <button onclick="addToCart('Mosque Prayer Mattress')">Add to Cart</button>
-        </div>
-        <!-- Product 4: Additional Office Chair -->
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Executive Office Chair">
-            <h3>Executive Office Chair</h3>
-            <p>Luxury leather chair with reclining feature. Ideal for executives.</p>
-            <p class="price">$299.99</p>
-            <button onclick="addToCart('Executive Office Chair')">Add to Cart</button>
-        </div>
-        <!-- Product 5: Counter Table -->
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Counter Table">
-            <h3>Wooden Counter Table</h3>
-            <p>Versatile table for counters or home use. Sturdy and elegant design.</p>
-            <p class="price">$249.99</p>
-            <button onclick="addToCart('Wooden Counter Table')">Add to Cart</button>
-        </div>
-        <!-- Product 6: Mosque Mattress Set -->
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mosque Mattress Set">
-            <h3>Mosque Mattress Set</h3>
-            <p>Set of 4 prayer mattresses. Soft and mosque-ready.</p>
-            <p class="price">$149.99</p>
-            <button onclick="addToCart('Mosque Mattress Set')">Add to Cart</button>
-        </div>
-        <!-- Add more products here by copying the above structure -->
-    </section>
-    <section id="reviews" class="reviews">
-        <h2>Customer Reviews</h2>
-        <div class="review">
-            <div class="stars">★★★★★</div>
-            <p><strong>Ahmed Khan:</strong> "Great quality office chairs from Warsi Traders. Comfortable and affordable. Highly recommend!"</p>
-        </div>
-        <div class="review">
-            <div class="stars">★★★★☆</div>
-            <p><strong>Fatima Ali:</strong> "The mosque mattresses are perfect for our local masjid. Durable and easy to maintain."</p>
-        </div>
-        <div class="review">
-            <div class="stars">★★★★★</div>
-            <p><strong>Muhammad Rizwan:</strong> "Bought a counter for my office. Looks professional and arrived on time. Excellent service!"</p>
-        </div>
-        <div class="review">
-            <div class="stars">★★★★☆</div>
-            <p><strong>Ayesha Noor:</strong> "Love the ergonomic chairs. Helped with my back pain during work hours."</p>
-        </div>
-    </section>
-    <footer id="contact">
-        <p>&copy; 2023 Warsi Traders. All rights reserved. | Contact: info@warsitraders.com | Phone: +92-XXX-XXXXXXX</p>
+    </div>
+
+    <footer>
+        <p>Address: Uttar Pradesh, Balrampur, Gonda Road, Naushara</p>
+        <p>Email: <a href="mailto:warsifahadali@gmail.com">warsifahadali@gmail.com</a></p>
     </footer>
 
     <script>
-        // Simple cart functionality (alert for demo; expand with a real e-commerce platform)
-        function addToCart(productName) {
-            alert(`${productName} added to cart! (This is a demo – integrate with a real e-commerce platform for full functionality.)`);
-        }
-    </script>
-</body>
-</html>
+        // WhatsApp redirect for button before products
+        document.getElementById('whatsapp-before-products').addEventListener('click', function() {
+            window.location.href = 'https://wa.me/7905703117';
+        });
+
+        // Scroll effect for background color change
+        window.addEventListener('scroll', function() {
+            const body = document.body;
+            if (window.scrollY > 100) {
+                body.style.backgroundColor = '#f5f5dc';
+                body.style.color = '#3e2723';
+            } else {
+                body.style.backgroundColor = '#3e2723';
+                body.style.color = 'white';
+            }
+        });
+
+        // Search functionality with auto-scroll
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            let firstMatch = null;
+            products.forEach(product => {
+                const name = product.getAttribute('data-name');
+                if (name.includes(query)) {
+                    product.classList.remove('hidden');
+                    if (!firstMatch) firstMatch = product;
+                } else {
+                    product.classList.add('hidden');
+                }
+            });
+            if (firstMatch) {
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('search-btn').click();
+            }
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('product-modal');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        const products = document.querySelectorAll('.product');
+
+        products.forEach(product => {
+            product.addEventListener('click', function() {
+                const images = this.getAttribute('data-images').split(',');
+                const title = this.querySelector('h3').textContent;
+                const description = this.getAttribute('data-description');
+                const price = this.getAttribute('data-price');
+                const weight = this.getAttribute('data-weight');
+                const reviews = JSON.parse(this.getAttribute('data-reviews'));
+
+                // Populate modal
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-price').textContent = price;
+                document.getElementById('modal-weight').textContent = 'Weight: ' + weight;
+                document.getElementById('modal-description').textContent = description;
+
+                // Images
+                const imagesContainer = document.getElementById('modal-images');
+                imagesContainer.innerHTML = '';
+                images.forEach(imgSrc => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc.trim();
+                    img.alt = title;
+                    imagesContainer.appendChild(img);
+                });
+
+                // Reviews
+                const reviewsContainer = document.getElementById('modal-reviews');
+                reviewsContainer.innerHTML = '<h3>Customer Reviews</h3>';
+                reviews.forEach(review => {
+                    const reviewDiv = document.createElement('div');
+                    reviewDiv.className = 'review';
+                    reviewDiv.innerHTML = `<h4>${review.name}</h4><p>${review.review}</p><p>Rating: ${review.rating}</p>`;
+                    reviewsContainer.appendChild(reviewDiv);
+                });
+
+                // WhatsApp button
+                document.getElementById('modal-whatsapp').onclick = function() {
+                    window.location.href = `https://wa.me/7905703117?text=I%20want%20to%20order%20the
