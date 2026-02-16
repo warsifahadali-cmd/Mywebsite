@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,25 +74,6 @@
             min-height: 100vh; /* Ensure content takes full height for scrolling */
         }
 
-        .whatsapp-before-products {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #25d366; /* WhatsApp green */
-            color: white;
-            border: none;
-            padding: 10px 20px; /* Adjusted for text */
-            font-size: 1.2em;
-            cursor: pointer;
-            border-radius: 5px; /* Rectangle shape */
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .whatsapp-before-products:hover {
-            background-color: #128c7e;
-        }
-
         .products {
             display: flex;
             flex-direction: column;
@@ -116,11 +96,14 @@
             border-radius: 10px;
             max-width: 300px;
             width: 100%;
+        }
+
+        .product img {
             cursor: pointer;
             transition: transform 0.2s;
         }
 
-        .product:hover {
+        .product img:hover {
             transform: scale(1.05);
         }
 
@@ -286,9 +269,6 @@
     </header>
 
     <main>
-        <button id="whatsapp-before-products" class="whatsapp-before-products" title="Order with WhatsApp">
-            <i class="fab fa-whatsapp"></i> Talk to the Owner
-        </button>
         <section class="products">
             <h2>Our Products</h2>
             <div class="product-pair">
@@ -336,14 +316,10 @@
     <footer>
         <p>Address: Uttar Pradesh, Balrampur, Gonda Road, Naushara</p>
         <p>Email: <a href="mailto:warsifahadali@gmail.com">warsifahadali@gmail.com</a></p>
+        <p>WhatsApp: <a href="https://wa.me/7905703117">7905703117</a></p>
     </footer>
 
     <script>
-        // WhatsApp redirect for button before products
-        document.getElementById('whatsapp-before-products').addEventListener('click', function() {
-            window.location.href = 'https://wa.me/7905703117';
-        });
-
         // Scroll effect for background color change
         window.addEventListener('scroll', function() {
             const body = document.body;
@@ -387,13 +363,14 @@
         const products = document.querySelectorAll('.product');
 
         products.forEach(product => {
-            product.addEventListener('click', function() {
-                const images = this.getAttribute('data-images').split(',');
-                const title = this.querySelector('h3').textContent;
-                const description = this.getAttribute('data-description');
-                const price = this.getAttribute('data-price');
-                const weight = this.getAttribute('data-weight');
-                const reviews = JSON.parse(this.getAttribute('data-reviews'));
+            const img = product.querySelector('img');
+            img.addEventListener('click', function() {
+                const images = product.getAttribute('data-images').split(',');
+                const title = product.querySelector('h3').textContent;
+                const description = product.getAttribute('data-description');
+                const price = product.getAttribute('data-price');
+                const weight = product.getAttribute('data-weight');
+                const reviews = JSON.parse(product.getAttribute('data-reviews'));
 
                 // Populate modal
                 document.getElementById('modal-title').textContent = title;
@@ -405,10 +382,10 @@
                 const imagesContainer = document.getElementById('modal-images');
                 imagesContainer.innerHTML = '';
                 images.forEach(imgSrc => {
-                    const img = document.createElement('img');
-                    img.src = imgSrc.trim();
-                    img.alt = title;
-                    imagesContainer.appendChild(img);
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgSrc.trim();
+                    imgElement.alt = title;
+                    imagesContainer.appendChild(imgElement);
                 });
 
                 // Reviews
@@ -421,6 +398,26 @@
                     reviewsContainer.appendChild(reviewDiv);
                 });
 
-                // WhatsApp button
+                // WhatsApp button with product name
                 document.getElementById('modal-whatsapp').onclick = function() {
-                    window.location.href = `https://wa.me/7905703117?text=I%20want%20to%20order%20the
+                    window.location.href = `https://wa.me/7905703117?text=I%20want%20to%20order%20${encodeURIComponent(title)}`;
+                };
+
+                // Show modal
+                modal.style.display = "block";
+            });
+        });
+
+        // Close modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
